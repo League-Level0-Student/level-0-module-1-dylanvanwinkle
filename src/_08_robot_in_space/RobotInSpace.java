@@ -15,8 +15,9 @@ import org.jointheleague.graphical.robot.Robot;
 
 public class RobotInSpace implements KeyEventDispatcher {
 
-	Robot rob = new Robot("mini");
-
+	Robot rob = new Robot("batman");
+	int Move = 4;
+	boolean PenCheck = false;
 	/*
 	 * Make the Robot move around the screen when the arrow keys are pressed...
 	 * 
@@ -25,19 +26,49 @@ public class RobotInSpace implements KeyEventDispatcher {
 	 * not add code here - go to step 2
 	 */
 
+	
 	private void moveRobot(int keyPressed) throws InterruptedException {
 		// 2. Print out the keyPressed variable and write down the numbers for
 		// each arrow key
+		System.out.println(keyPressed);
 
-		// 3. If the up arrow is pressed, move the Robot up the screen.
+		if(keyPressed == 32) {
+		if(PenCheck == true) {
+			rob.penUp();
+			PenCheck = false;
+		}else {
+		rob.penDown();
+	PenCheck = true;
+		}}
 
+rob.setPenWidth(66);
+// 3. If the up arrow is pressed, move the Robot up the screen.
+if(keyPressed == 38) {
+	rob.setRandomPenColor();
+	rob.setAngle(0);
+	rob.microMove(Move);
+
+}
 		// 4. If the down arrow is pressed, move the Robot down.
+if(keyPressed == 40) {
+	rob.setRandomPenColor();
+	rob.setAngle(180);
+	rob.microMove(Move);
+}	
+	// 5. If the left arrow is pressed, make the Robot go left.
+if(keyPressed == 37) {
+	rob.setRandomPenColor();
+	rob.setAngle(270);
+rob.microMove(Move);
+	}
+// 6. If right is pressed, move the Robot right.
+if(keyPressed == 39) {
+	rob.setRandomPenColor();
+	rob.setAngle(90);
+rob.microMove(Move);
+	}
 
-		// 5. If the left arrow is pressed, make the Robot go left.
-
-		// 6. If right is pressed, move the Robot right.
-
-		// 7. Run your program and move the Robot to RD-2D for a surprise!
+// 7. Run your program and move the Robot to RD-2D for a surprise!
 	}
 
 	private void checkIfR2D2Found() throws Exception {
@@ -54,7 +85,7 @@ public class RobotInSpace implements KeyEventDispatcher {
 
 	private void controlTheRobot() {
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
-		Robot.setWindowImage("planet.jpg");
+		//Robot.setWindowImage("planet.jpg");
 		rob.penUp();
 		rob.setSpeed(10);
 	}
