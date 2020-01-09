@@ -32,6 +32,8 @@ public class RobotInSpace implements KeyEventDispatcher {
 		// each arrow key
 		System.out.println(keyPressed);
 
+		rob.setWindowSize(1000, 1000);
+		
 		if(keyPressed == 32) {
 		if(PenCheck == true) {
 			rob.penUp();
